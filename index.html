@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+
+    <h2>EMS</h2>
+
+    <nav>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Employees</a></li>
+        <li><a href="#">Departments</a></li>
+        <li><a href="#">Attendance</a></li>
+        <li><a href="#">Reports</a></li>
+      </ul>
+    </nav>
+
+  </aside>
+
+  <!-- Main -->
+  <main class="main-content">
+
+    <!-- Header -->
+    <header>
+      <h1>Employee Management</h1>
+    </header>
+
+    <!-- Dashboard Cards -->
+    <section class="dashboard">
+
+      <div class="card">
+        <h3>Total Employees</h3>
+        <p id="totalEmployees">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Departments</h3>
+        <p id="totalDepartments">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Active Employees</h3>
+        <p id="totalActiveEmployees">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Inactive Employees</h3>
+        <p id="totalInactiveEmployees">0</p>
+      </div>
+
+    </section>
+
+    <!-- Employee Form -->
+    <section class="employee-form">
+
+      <h2>Add Employee</h2>
+
+      <form id="form-submit-field">
+
+        <input
+          type="text"
+          placeholder="Full Name"
+          id="fullName-field"
+        >
+
+        <input
+          type="email"
+          placeholder="Email"
+          id="email-field"
+          required
+        >
+
+        <input
+          type="number"
+          placeholder="Age"
+          id="age-field"
+        >
+
+        <input
+          type="text"
+          placeholder="Position"
+          id="position-field"
+        >
+
+        <input
+          type="text"
+          placeholder="Department"
+          id="department-field"
+        >
+
+        <input
+          type="number"
+          placeholder="Salary"
+          id="salary-field"
+        >
+
+        <select id="status-field">
+          <option>Status</option>
+          <option>Active</option>
+          <option>Inactive</option>
+        </select>
+
+        <button type="submit">
+          Save Employee
+        </button>
+
+      </form>
+
+    </section>
+
+    <!-- Search -->
+    <section class="controls">
+
+      <input
+        type="text"
+        placeholder="Search employee..."
+        id="search-field"
+      >
+
+      <select id="departmentFilter">
+        <option>All Departments</option>
+      </select>
+
+      <select id="statusCategory">
+        <option>All Status</option>
+      </select>
+
+    </section>
+
+    <!-- Employee Table -->
+    <section class="employee-table">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th>Position</th>
+            <th>Salary</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="renderTableEmployees">
+          <!-- Render Employees Here -->
+        </tbody>
+
+      </table>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
