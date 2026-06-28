@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Inventory Dashboard</h1>
+  </header>
+
+  <main>
+
+    <!-- DASHBOARD SUMMARY -->
+    <section class="dashboard-summary">
+
+      <div class="card">
+        <h3>Total Products</h3>
+        <p id="total-products">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Total Inventory Value</h3>
+        <p id="total-value">₱0</p>
+      </div>
+
+      <div class="card">
+        <h3>Low Stock Items</h3>
+        <p id="low-stock-count">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Most Expensive Product</h3>
+        <p id="most-expensive">-</p>
+      </div>
+
+    </section>
+
+    <!-- ADD PRODUCT -->
+    <section class="add-product">
+
+      <h2>Add Product</h2>
+
+      <form id="product-form">
+
+        <input
+          type="text"
+          id="product-name"
+          placeholder="Product Name"
+        >
+
+        <input
+          type="text"
+          id="product-category"
+          placeholder="Category"
+        >
+
+        <input
+          type="number"
+          id="product-price"
+          placeholder="Price"
+        >
+
+        <input
+          type="number"
+          id="product-stock"
+          placeholder="Stock"
+        >
+
+        <button type="submit">
+          Add Product
+        </button>
+
+      </form>
+
+    </section>
+
+    <!-- SEARCH & FILTER -->
+    <section class="controls">
+
+      <input
+        type="text"
+        id="search-product"
+        placeholder="Search Product..."
+      >
+
+      <select id="category-filter">
+        <option value="all">All Categories</option>
+      </select>
+
+    </section>
+
+    <!-- LOW STOCK ALERTS -->
+    <section class="alerts">
+
+      <h2>Low Stock Alerts</h2>
+
+      <ul id="alert-list">
+        <!-- JS Render -->
+      </ul>
+
+    </section>
+
+    <!-- PRODUCT TABLE -->
+    <section class="product-list">
+
+      <h2>Products</h2>
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody id="product-table-body">
+
+          <!-- JS Render -->
+
+          <!-- Example -->
+          <!--
+          <tr>
+            <td>Laptop</td>
+            <td>Electronics</td>
+            <td>50000</td>
+            <td>5</td>
+            <td>
+              <button>Edit</button>
+              <button>Delete</button>
+            </td>
+          </tr>
+          -->
+
+        </tbody>
+
+      </table>
+
+    </section>
+
+  </main>
+  
+  <script src="main.js"></script>
+</body>
+</html>
