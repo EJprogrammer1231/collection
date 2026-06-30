@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Finance Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <header>
+      <h1>Personal Finance Tracker</h1>
+    </header>
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+
+      <div class="card">
+        <h3>Total Income</h3>
+        <p id="totalIncome">₱0</p>
+      </div>
+
+      <div class="card">
+        <h3>Total Expense</h3>
+        <p id="totalExpense">₱0</p>
+      </div>
+
+      <div class="card">
+        <h3>Balance</h3>
+        <p id="balance">₱0</p>
+      </div>
+
+    </section>
+
+    <!-- Form -->
+    <section class="transaction-form">
+      <h2>Add Transaction</h2>
+
+      <form id="transactionForm">
+
+        <input
+          type="text"
+          id="titleField"
+          placeholder="Transaction Title"
+        >
+
+        <input
+          type="number"
+          id="amountField"
+          placeholder="Amount"
+        >
+
+        <select id="typeField">
+          <option value="">Select Type</option>
+          <option value="Income">Income</option>
+          <option value="Expense">Expense</option>
+        </select>
+
+        <select id="categoryField">
+          <option value="">Select Category</option>
+          <option>Food</option>
+          <option>Transportation</option>
+          <option>Shopping</option>
+          <option>Bills</option>
+          <option>Salary</option>
+          <option>Others</option>
+        </select>
+
+        <button type="submit">
+          Add Transaction
+        </button>
+
+      </form>
+    </section>
+
+    <!-- Controls -->
+    <section class="controls">
+
+      <input
+        type="text"
+        id="searchField"
+        placeholder="Search transaction..."
+      >
+
+      <select id="filterCategory">
+        <option value="all">All Categories</option>
+      </select>
+
+      <select id="filterType">
+        <option value="all">All Types</option>
+        <option value="Income">Income</option>
+        <option value="Expense">Expense</option>
+      </select>
+
+    </section>
+
+    <!-- Table -->
+    <section class="table-container">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Type</th>
+            <th>Category</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody id="transactionTableBody">
+          <!-- Render transactions here -->
+        </tbody>
+
+      </table>
+
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
