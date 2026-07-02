@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+  <!-- Dashboard -->
+  <section class="dashboard">
+    <div class="card">
+      <h3>Total Products</h3>
+      <p id="total-products">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Stock</h3>
+      <p id="total-stock">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Low Stock</h3>
+      <p id="low-stock">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Inventory Value</h3>
+      <p id="inventory-value">$0</p>
+    </div>
+  </section>
+
+  <!-- Add Product Form -->
+  <form id="product-form">
+    <input type="text" id="product-name" placeholder="Product Name">
+
+    <select id="product-category">
+      <option value="all">Choose Category</option>
+      <option>Electronics</option>
+      <option>Furniture</option>
+      <option>Clothing</option>
+      <option>Food</option>
+    </select>
+
+    <input type="number" id="product-price" placeholder="Price">
+    <input type="number" id="product-stock" placeholder="Stock">
+
+    <input
+      type="file"
+      id="product-image"
+      accept="image/*"
+    >
+
+    <button>Add Product</button>
+  </form>
+
+  <!-- Search and Filter -->
+  <div class="tools">
+    <input
+      type="text"
+      id="search-product"
+      placeholder="Search product..."
+    >
+
+    <select id="filter-category">
+      <option value="all">All Categories</option>
+      <option>Electronics</option>
+      <option>Furniture</option>
+      <option>Clothing</option>
+      <option>Food</option>
+    </select>
+  </div>
+
+  <!-- Product Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody id="product-table-body">
+    </tbody>
+  </table>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
