@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>Expense Tracker</h1>
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+      <div class="card">
+        <h3>Balance</h3>
+        <p id="balance">$0.00</p>
+      </div>
+
+      <div class="card">
+        <h3>Income</h3>
+        <p id="income">$0.00</p>
+      </div>
+
+      <div class="card">
+        <h3>Expense</h3>
+        <p id="expense">$0.00</p>
+      </div>
+    </div>
+
+    <!-- Add Transaction -->
+    <form id="transaction-form">
+      <h2>Add Transaction</h2>
+
+      <input
+        type="text"
+        id="title-input"
+        placeholder="Transaction Title"
+      >
+
+      <input
+        type="number"
+        id="amount-input"
+        placeholder="Amount"
+      >
+
+      <select id="type-input">
+        <option value="">Select Type</option>
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+
+      <button type="submit">
+        Add Transaction
+      </button>
+    </form>
+
+    <!-- Transactions -->
+    <div class="transactions">
+      <h2>Transactions</h2>
+
+      <div id="empty-state">
+        <p>No transactions yet.</p>
+      </div>
+
+      <ul id="transaction-list"></ul>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
