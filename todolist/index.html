@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List Pro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>To-Do List Pro</h1>
+      <p>Manage your daily tasks efficiently</p>
+    </header>
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+      <div class="card">
+        <h3>Total Tasks</h3>
+        <p id="total-tasks">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Completed</h3>
+        <p id="completed-tasks">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Pending</h3>
+        <p id="pending-tasks">0</p>
+      </div>
+    </section>
+
+    <!-- Add Task Form -->
+    <form id="task-form" class="task-form">
+      <input
+        type="text"
+        id="task-input"
+        placeholder="Enter a task..."
+      >
+
+      <select id="priority-input">
+        <option value="Priority">Priority</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+
+      <button type="submit">Add Task</button>
+    </form>
+
+    <!-- Search & Filter -->
+    <section class="controls">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search task..."
+      >
+
+      <select id="filter-input">
+        <option value="all">All</option>
+        <option value="completed">Completed</option>
+        <option value="pending">Pending</option>
+      </select>
+    </section>
+
+    <!-- Task List -->
+    <ul id="task-list">
+      <!-- JavaScript will render tasks here -->
+    </ul>
+
+    <div id="empty-state">
+      <p>No tasks yet.</p>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
