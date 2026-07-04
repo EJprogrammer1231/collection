@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes App Practice</title>
+</head>
+<body>
+
+  <h1>Notes App</h1>
+
+  <!-- Add Note Form -->
+  <form id="note-form">
+    <input
+      type="text"
+      id="note-input"
+      placeholder="Enter a note..."
+    >
+    <button type="submit">
+      Add Note
+    </button>
+  </form>
+
+  <!-- Notes Count -->
+  <p>Total Notes:
+    <span id="notes-count">0</span>
+  </p>
+
+  <!-- Empty State -->
+  <div id="empty-state">
+    <p>No notes yet.</p>
+  </div>
+
+  <!-- Notes List -->
+  <ul id="notes-list"></ul>
+
+  <script src="main.js"></script>
+</body>
+</html>
