@@ -71,7 +71,7 @@ function renderingExpense() {
     deleteBtn.textContent = "Delete";
 
     deleteBtn.addEventListener("click", () => {
-      expense.splice(expense, 1);
+      expense.splice(index, 1);
 
       localStorage.setItem(
         "expense",
