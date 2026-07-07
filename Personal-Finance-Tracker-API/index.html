@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Finance Tracker With API</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Dashboard Cards -->
+  <section>
+    <div>
+      <h1>Total Balance</h1>
+      <p id="total-balance">0</p>
+    </div>
+
+    <div>
+      <h1>Total Income</h1>
+      <p id="total-income">0</p>
+    </div>
+
+    <div>
+      <h1>Total Expense</h1>
+      <p id="total-expense">0</p>
+    </div>
+
+    <div>
+      <h1>This Month's Expenses</h1>
+      <p id="month-expenses">0</p>
+    </div>
+  </section>
+
+  <!-- Add Transaction Form -->
+  <section>
+    <h1>Add Transaction Form</h1>
+
+    <form id="add-transaction-form-fields">
+      <input
+        type="text"
+        placeholder="Transaction Name"
+        id="input-transaction-name"
+      >
+
+      <input
+        type="number"
+        placeholder="Amount"
+        id="input-transaction-amount"
+      >
+
+      <select id="transaction-type" required>
+        <option value="" disabled selected>Select Type</option>
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+
+      <input
+        type="date"
+        id="input-transaction-date"
+      >
+
+      <input
+        type="text"
+        placeholder="Notes..."
+        id="input-transaction-notes"
+      >
+
+      <button type="submit">
+        Add Transaction
+      </button>
+    </form>
+  </section>
+
+  <!-- Search and Filters -->
+  <section>
+    <div>
+      <input
+        type="search"
+        placeholder="Search"
+        id="input-transaction-search"
+      >
+    </div>
+
+    <div>
+      <select id="Filter-Categories">
+        <option value="">Filter by</option>
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Transaction List -->
+  <section>
+    <h1>Transaction List</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Amount</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+
+      <tbody id="transaction-list-table">
+        <!-- Transactions will be rendered here -->
+      </tbody>
+    </table>
+  </section>
+
+  <script src="js/storage.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/transactions.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
