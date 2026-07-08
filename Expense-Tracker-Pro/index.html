@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>Expense Tracker Pro</h1>
+        <p>Track your daily expenses with ease.</p>
+    </header>
+
+    <!-- Dashboard -->
+    <section class="main-container-dashboard">
+
+        <div class="dashboard-card">
+            <h2>Total Expenses</h2>
+            <p id="total-expenses">₱0.00</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Monthly Total</h2>
+            <p id="monthly-total">₱0.00</p>
+        </div>
+
+    </section>
+
+    <!-- Add Expense -->
+    <section class="main-container-addform">
+
+        <form id="expense-form">
+
+            <h2>Add Expense</h2>
+
+            <input
+                type="text"
+                id="expense-name"
+                placeholder="Expense Name"
+            >
+
+            <input
+                type="number"
+                id="expense-amount"
+                placeholder="Amount"
+            >
+
+            <select id="expense-category">
+                <option value="" disabled selected>Select Category</option>
+                <option value="Food">Food</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Rental">Rental</option>
+                <option value="Maintenance">Maintenance</option>
+                <option value="Transportation">Transportation</option>
+                <option value="Bills">Bills</option>
+            </select>
+
+            <input
+                type="date"
+                id="expense-date"
+            >
+
+            <button type="submit">
+                Add Expense
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- Search -->
+
+    <section class="search-section">
+
+        <input
+            type="search"
+            id="search-input"
+            placeholder="Search expense..."
+        >
+
+        <select id="filter-category">
+            <option value="All">All Categories</option>
+            <option value="Food">Food</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Rental">Rental</option>
+            <option value="Maintenance">Maintenance</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Bills">Bills</option>
+        </select>
+
+    </section>
+
+    <!-- Expense List -->
+
+    <section class="expense-list">
+
+        <div class="expense-header">
+            <h2>Expense List</h2>
+            <span id="expense-count">0 Expenses</span>
+        </div>
+
+        <div id="expense-container">
+
+            <!-- JS will render expenses here -->
+
+        </div>
+
+        <div id="empty-state">
+            <h3>No Expenses Yet</h3>
+            <p>Add your first expense above.</p>
+        </div>
+
+    </section>
+
+    <script src="js/storage.js"></script>
+    <script src="js/transactions.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
