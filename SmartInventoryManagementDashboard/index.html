@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Inventory Management Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="header">
+    <h1>Smart Inventory Management Dashboard</h1>
+  </header>
+
+  <!-- Dashboard -->
+  <section id="dashboard">
+
+    <div class="card">
+      <h3>Total Products</h3>
+      <p id="total-products">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Stock</h3>
+      <p id="total-stock">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Inventory Value</h3>
+      <p id="total-inventory-value">₱0</p>
+    </div>
+
+    <div class="card">
+      <h3>Products Sold</h3>
+      <p id="products-sold">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Low Stock Products</h3>
+      <p id="low-stock-products">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Out of Stock</h3>
+      <p id="out-of-stock-products">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Most Expensive Product</h3>
+      <p id="most-expensive-product">-</p>
+    </div>
+
+    <div class="card">
+      <h3>Cheapest Product</h3>
+      <p id="cheapest-product">-</p>
+    </div>
+
+    <div class="card">
+      <h3>Average Price</h3>
+      <p id="average-price">₱0</p>
+    </div>
+
+    <div class="card">
+      <h3>Average Stock</h3>
+      <p id="average-stock">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Unique Categories</h3>
+      <p id="unique-categories">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Best Selling Product</h3>
+      <p id="best-selling-product">-</p>
+    </div>
+
+    <div class="card">
+      <h3>Worst Selling Product</h3>
+      <p id="worst-selling-product">-</p>
+    </div>
+
+    <div class="card">
+      <h3>Never Sold Products</h3>
+      <p id="never-sold-products">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Products Added This Month</h3>
+      <p id="products-this-month">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Low Stock Percentage</h3>
+      <p id="low-stock-percentage">0%</p>
+    </div>
+
+  </section>
+
+  <!-- Add Product Form -->
+  <section id="add-product">
+
+    <h2>Add Product</h2>
+
+    <form id="product-form">
+
+      <input
+        type="text"
+        id="product-name"
+        placeholder="Product Name"
+      >
+
+      <input
+        type="text"
+        id="product-category"
+        placeholder="Category"
+      >
+
+      <input
+        type="number"
+        id="product-price"
+        placeholder="Price"
+      >
+
+      <input
+        type="number"
+        id="product-stock"
+        placeholder="Stock"
+      >
+
+      <input
+        type="number"
+        id="product-sold"
+        placeholder="Sold"
+      >
+
+      <input
+        type="text"
+        id="product-supplier"
+        placeholder="Supplier"
+      >
+
+      <button type="submit">
+        Save Product
+      </button>
+
+    </form>
+
+  </section>
+
+  <!-- Search and Filter -->
+  <section id="controls">
+
+    <input
+      type="text"
+      id="search-product"
+      placeholder="Search Product..."
+    >
+
+    <select id="category-filter">
+      <option value="All">All Categories</option>
+    </select>
+
+    <select id="sort-products">
+      <option value="Newest">Newest</option>
+      <option value="Oldest">Oldest</option>
+      <option value="Highest Price">Highest Price</option>
+      <option value="Lowest Price">Lowest Price</option>
+      <option value="Highest Stock">Highest Stock</option>
+      <option value="Lowest Stock">Lowest Stock</option>
+      <option value="Best Selling">Best Selling</option>
+    </select>
+
+    <label>
+      <input
+        type="checkbox"
+        id="low-stock-filter"
+      >
+      Show Low Stock Only
+    </label>
+
+  </section>
+
+  <!-- Product Table -->
+  <section id="product-table">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Name</th>
+          <th>Category</th>
+          <th>Supplier</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Sold</th>
+          <th>Actions</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody id="product-list">
+
+      </tbody>
+
+    </table>
+
+  </section>
+
+  <!-- Category Statistics -->
+  <section id="category-summary">
+
+    <h2>Category Summary</h2>
+
+    <div id="category-list">
+
+    </div>
+
+  </section>
+
+  <!-- Supplier Statistics -->
+  <section id="supplier-summary">
+
+    <h2>Supplier Summary</h2>
+
+    <div id="supplier-list">
+
+    </div>
+
+  </section>
+
+  <!-- JavaScript Files -->
+  <script src="js/storage.js"></script>
+  <script src="js/product.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/statistics.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

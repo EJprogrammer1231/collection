@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRUD Practice</title>
+</head>
+<body>
+
+<h1>CRUD Practice</h1>
+
+<form id="userForm">
+  <input
+    type="text"
+    id="inputUser"
+    placeholder="Enter name..."
+    required
+  >
+
+  <button type="submit">Save</button>
+</form>
+
+<hr>
+
+<ul id="userList"></ul>
+
+<script>
+
+const userForm = document.getElementById("userForm");
+const inputUser = document.getElementById("inputUser");
+const userList = document.getElementById("userList");
+
+let users = [];
+
+// Stores which user is currently being edited
+let editingId = null;
+
+userForm.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const name = inputUser.value.trim();
+
+    if(!name) return;
+
+    // CREATE
+    if(editingId === null){
+
+        users.push({
+            id: Date.now(),
+            name: name
+        });
+
+    }
+
+    // UPDATE
+    else{
+
+        const user = users.find(user => user.id === editingId);
+
+        if(user){
+
+            user.name = name;
+
+        }
+
+        editingId = null;
+
+    }
+
+    renderUser();
+
+    userForm.reset();
+
+});
+
+function renderUser(){
+
+    userList.innerHTML = "";
+
+    users.forEach(user=>{
+
+        const li = document.createElement("li");
+
+        li.textContent = user.name + " ";
+
+        const editBtn = document.createElement("button");
+        editBtn.textContent = "Edit";
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+
+        editBtn.addEventListener("click",()=>{
+          editUser(user.id);
+        });
+
+        deleteBtn.addEventListener("click",()=>{
+          deleteUser(user.id);
+        });
+
+        li.append(editBtn,deleteBtn);
+
+        userList.appendChild(li);
+
+    });
+
+}
+
+function editUser(id){
+
+    const user = users.find(user=>user.id===id);
+
+    if(!user) return;
+
+    inputUser.value = user.name;
+
+    editingId = id;
+
+}
+
+function deleteUser(id){
+
+    const index = users.findIndex(user=>user.id===id);
+
+    if(index===-1) return;
+
+    users.splice(index,1);
+
+    renderUser();
+}
+
+</script>
+
+</body>
+</html>
