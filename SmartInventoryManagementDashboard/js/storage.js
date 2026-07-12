@@ -17,4 +17,14 @@ function loadProducts() {
   updatetotalLowStockProducts();
   updatetotalOutOfStock();
   updatemostExpensiveProducts();
+  updatecheapestProduct();
+  updateAveragePrice();
+  updateAverageStock();
+  updateUniqueCategories();
+  updateBestSelling();
+  updateWorstSelling();
+  updateNeverSoldProducts();
+  search_Product();
+  All_Categories();  
+  filter_Categories();
 }

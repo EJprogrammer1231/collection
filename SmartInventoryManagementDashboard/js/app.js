@@ -10,8 +10,8 @@ const productSupplier = document.getElementById("product-supplier");
 // edit temporary storage
 let editProductId = null;
 
-
 loadProducts();
+
 productForm.addEventListener("submit", (e) => {
   e.preventDefault();
 

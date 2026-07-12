@@ -72,7 +72,7 @@ function updatetotalOutOfStock() {
 };
 
 function updatemostExpensiveProducts() {
-  if (!products || products.length === 0) {
+  if (products.length === 0) {
     mostExpensiveProduct.textContent = "-";
     return;
   }
@@ -80,4 +80,113 @@ function updatemostExpensiveProducts() {
   const mostExpensive = products.reduce((highest, product) => {
     return product.price > highest.price ? product : highest;
   }, products[0]);
+
+  mostExpensiveProduct.textContent = `${mostExpensive.name} - ₱${mostExpensive.price}`;
+};
+
+function updatecheapestProduct() {
+  if (products.length === 0) {
+    cheapestProduct.textContent = "-";
+    return;
+  }
+
+  const cheapest_product = products.reduce((lowest, product) => {
+    return product.price < lowest.price ? product : lowest;
+  }, products[0]);
+
+  cheapestProduct.textContent = `${cheapest_product.name} - ₱${cheapest_product.price}`;
+};
+
+function updateAveragePrice() {
+
+  if (products.length === 0) {
+    averagePrice.textContent = "₱0";
+    return;
+  }
+
+  const totalPrice = products.reduce((total, product) => {
+    return total + product.price;
+  }, 0);
+
+  const average = totalPrice / products.length;
+
+  averagePrice.textContent = `₱${average.toLocaleString()}`;
 }
+
+function updateAverageStock() {
+
+  if (products.length === 0) {
+    averageStock.textContent = "₱0";
+    return;
+  }
+
+  const totalStock = products.reduce((total, product) => {
+    return total + product.stock;
+  }, 0);
+
+  const average = totalStock / products.length;
+
+  averageStock.textContent = `₱${average.toLocaleString()}`;
+};
+
+function updateUniqueCategories() {
+
+  if (products.length === 0) {
+    uniqueCategories.textContent = "0";
+    return;
+  }
+
+  const uniqueCategoryList = [...new Set( products.map(product => product.category ))];
+
+  uniqueCategories.textContent = uniqueCategoryList.length;
+};
+
+function updateBestSelling() {
+
+  if (products.length === 0) {
+    bestSellingProduct.textContent = "-";
+    return;
+  }
+
+  const best_selling = products.reduce((best,product) => {
+    if (product.sold > best.sold) {
+      return product;
+    }
+
+    return best;
+
+  }, products[0]);
+
+  bestSellingProduct.textContent = `${best_selling.name} - (sold - ${best_selling.sold}pcs)`;
+};
+
+function updateWorstSelling() {
+
+  if (products.length === 0) {
+    worstSellingProduct.textContent = "-";
+    return;
+  }
+
+  const worst_selling = products.reduce((worst,product) => {
+    if (product.sold < worst.sold) {
+      return product;
+    }
+
+    return worst;
+
+  }, products[0]);
+
+  worstSellingProduct.textContent = `${worst_selling.name} - (sold - ${worst_selling.sold}pcs)`;
+};
+
+function updateNeverSoldProducts() {
+  const never_sold = products.reduce((neverSold,product) => {
+    if (product.sold <= 0) {
+      return neverSold + 1;
+    }
+
+    return neverSold;
+  }, 0);
+
+  neverSoldProducts.textContent = never_sold;
+};
