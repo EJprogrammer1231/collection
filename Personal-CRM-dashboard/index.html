@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal CRM Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header id="header">
+    <h1>Personal CRM Dashboard</h1>
+    <p>Manage your contacts, clients, and relationships in one place.</p>
+  </header>
+
+  <main>
+
+    <!-- ================= DASHBOARD ================= -->
+    <section id="dashboard">
+
+      <div class="dashboard-card">
+        <h3>Total Contacts</h3>
+        <p id="total-contacts">0</p>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>Favorites</h3>
+        <p id="favorite-count">0</p>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>Needs Follow-up</h3>
+        <p id="followup-count">0</p>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>New This Month</h3>
+        <p id="new-month-count">0</p>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>Average Age</h3>
+        <p id="average-age">0</p>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>Most Common Category</h3>
+        <p id="common-category">-</p>
+      </div>
+
+    </section>
+
+    <!-- ================= ADD CONTACT ================= -->
+    <section id="add-contact">
+
+      <h2>Add New Contact</h2>
+
+      <form id="contact-form">
+
+        <div class="form-group">
+          <label for="input-name">Full Name</label>
+          <input
+            type="text"
+            id="input-name"
+            placeholder="Enter full name"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="input-phone">Phone Number</label>
+          <input
+            type="tel"
+            id="input-phone"
+            placeholder="09XXXXXXXXX"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="input-email">Email</label>
+          <input
+            type="email"
+            id="input-email"
+            placeholder="example@email.com"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="input-company">Company</label>
+          <input
+            type="text"
+            id="input-company"
+            placeholder="Company Name"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="input-category">Category</label>
+
+          <select id="input-category" required>
+            <option value="">Select Category</option>
+            <option value="Friend">Friend</option>
+            <option value="Family">Family</option>
+            <option value="Client">Client</option>
+            <option value="School">School</option>
+            <option value="Work">Work</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="input-status">Status</label>
+
+          <select id="input-status" required>
+            <option value="">Select Status</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+            <option value="Pending">Pending</option>
+            <option value="Needs Follow-up">Needs Follow-up</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="input-birthday">Birthday</label>
+          <input
+            type="date"
+            id="input-birthday"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="input-notes">Notes</label>
+
+          <textarea
+            id="input-notes"
+            rows="4"
+            placeholder="Write notes here..."
+          ></textarea>
+        </div>
+
+        <div class="form-group checkbox">
+          <label>
+            <input type="checkbox" id="input-favorite">
+            Mark as Favorite
+          </label>
+        </div>
+
+        <button type="submit" id="add-contact-btn">
+          Add Contact
+        </button>
+
+      </form>
+
+    </section>
+
+    <!-- ================= CONTROLS ================= -->
+    <section id="controls">
+
+      <input
+        type="search"
+        id="search-contact"
+        placeholder="Search by name, company, phone, email..."
+      >
+
+      <select id="filter-category">
+        <option value="">All Categories</option>
+        <option value="Friend">Friend</option>
+        <option value="Family">Family</option>
+        <option value="Client">Client</option>
+        <option value="School">School</option>
+        <option value="Work">Work</option>
+      </select>
+
+      <select id="filter-status">
+        <option value="">All Status</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+        <option value="Pending">Pending</option>
+        <option value="Needs Follow-up">Needs Follow-up</option>
+      </select>
+
+      <select id="sort-contact">
+        <option value="">Sort By</option>
+        <option value="newest">Newest</option>
+        <option value="oldest">Oldest</option>
+        <option value="alphabetical">A - Z</option>
+        <option value="birthday">Birthday</option>
+        <option value="company">Company</option>
+        <option value="updated">Recently Updated</option>
+      </select>
+
+    </section>
+
+    <!-- ================= CONTACT LIST ================= -->
+    <section id="contact-list">
+
+      <div class="section-header">
+        <h2>Contacts</h2>
+        <p id="contact-count">0 Contacts</p>
+      </div>
+
+      <div id="contact-container">
+
+        <div id="empty-state">
+          <h3>No Contacts Found</h3>
+          <p>Add your first contact to get started.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= PAGINATION ================= -->
+    <section id="pagination">
+
+      <button id="previous-page">
+        Previous
+      </button>
+
+      <span id="current-page">
+        Page 1
+      </span>
+
+      <button id="next-page">
+        Next
+      </button>
+
+    </section>
+
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/contacts.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/filter.js"></script>
+  <script src="js/sort.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

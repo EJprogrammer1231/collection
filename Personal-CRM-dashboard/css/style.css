@@ -1,0 +1,358 @@
+/* =====================================================
+   Personal CRM Dashboard — Clean Black & White Theme
+   ===================================================== */
+
+:root {
+  --black: #111111;
+  --white: #ffffff;
+  --gray-50: #fafafa;
+  --gray-100: #f2f2f2;
+  --gray-200: #e6e6e6;
+  --gray-400: #a3a3a3;
+  --gray-600: #6b6b6b;
+  --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --transition: 0.18s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  background: var(--gray-50);
+  color: var(--black);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+
+/* ================= HEADER ================= */
+#header {
+  background: var(--black);
+  color: var(--white);
+  padding: 40px 24px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+#header h1 {
+  margin: 0 0 8px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+#header p {
+  margin: 0;
+  color: var(--gray-400);
+  font-size: 0.95rem;
+}
+
+/* ================= DASHBOARD CARDS ================= */
+#dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.dashboard-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: left;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.dashboard-card h3 {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dashboard-card p {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--black);
+}
+
+/* ================= SECTIONS (shared) ================= */
+section {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+section > h2 {
+  margin: 0 0 20px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--black);
+}
+
+/* ================= FORM ================= */
+#contact-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  background: var(--gray-50);
+  color: var(--black);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--black);
+  background: var(--white);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-group.checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-group.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.form-group.checkbox input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--black);
+}
+
+#add-contact-btn {
+  grid-column: 1 / -1;
+  justify-self: start;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+#add-contact-btn:hover {
+  opacity: 0.85;
+}
+
+#add-contact-btn:active {
+  transform: scale(0.98);
+}
+
+/* ================= CONTROLS ================= */
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+#search-contact {
+  flex: 1 1 240px;
+  padding: 10px 14px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  background: var(--gray-50);
+  font-size: 0.95rem;
+}
+
+#controls select {
+  padding: 10px 14px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  background: var(--gray-50);
+  font-size: 0.9rem;
+  color: var(--black);
+  cursor: pointer;
+}
+
+#search-contact:focus,
+#controls select:focus {
+  outline: none;
+  border-color: var(--black);
+  background: var(--white);
+}
+
+/* ================= CONTACT LIST ================= */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  margin: 0;
+}
+
+#contact-count {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+#contact-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* Individual contact card (assumes JS renders elements with class="contact-card") */
+.contact-card {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: var(--white);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.contact-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+#empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--gray-600);
+}
+
+#empty-state h3 {
+  margin: 0 0 8px;
+  color: var(--black);
+  font-size: 1.1rem;
+}
+
+#empty-state p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ================= PAGINATION ================= */
+#pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: transparent;
+  box-shadow: none;
+  padding: 8px 0 0;
+}
+
+#pagination button {
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+#pagination button:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+#pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: var(--white);
+  color: var(--black);
+}
+
+#current-page {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+  #header {
+    padding: 28px 16px;
+  }
+
+  main {
+    padding: 0 16px 48px;
+  }
+
+  section {
+    padding: 18px;
+  }
+
+  #add-contact-btn {
+    width: 100%;
+    justify-self: stretch;
+    text-align: center;
+  }
+
+  #controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
