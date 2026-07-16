@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Developer Finder</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>GitHub Developer Finder</h1>
+    <p>Search GitHub users and view their public profile.</p>
+  </header>
+
+  <main>
+
+    <!-- Search -->
+    <section id="search-section">
+      <form id="search-form">
+        <input
+          type="text"
+          id="input-username"
+          placeholder="Enter GitHub username..."
+          autocomplete="off"
+          required
+        >
+        <button type="submit" id="btn-search">
+          Search
+        </button>
+      </form>
+
+      <p id="loading-message"></p>
+      <p id="error-message"></p>
+    </section>
+
+    <!-- User Profile -->
+    <section id="profile-section">
+
+      <div id="profile-card">
+
+        <div id="profile-image">
+          <img
+            id="user-avatar"
+            src=""
+            alt="User Avatar"
+          >
+        </div>
+
+        <div id="profile-info">
+
+          <h2 id="user-name">Name</h2>
+
+          <p>
+            <strong>Username:</strong>
+            <span id="user-login">-</span>
+          </p>
+
+          <p>
+            <strong>Bio:</strong>
+            <span id="user-bio">-</span>
+          </p>
+
+          <p>
+            <strong>Company:</strong>
+            <span id="user-company">-</span>
+          </p>
+
+          <p>
+            <strong>Location:</strong>
+            <span id="user-location">-</span>
+          </p>
+
+          <p>
+            <strong>Followers:</strong>
+            <span id="user-followers">0</span>
+          </p>
+
+          <p>
+            <strong>Following:</strong>
+            <span id="user-following">0</span>
+          </p>
+
+          <p>
+            <strong>Repositories:</strong>
+            <span id="user-repos">0</span>
+          </p>
+
+          <p>
+            <strong>Joined:</strong>
+            <span id="user-created">-</span>
+          </p>
+
+          <a
+            id="user-profile-link"
+            href="#"
+            target="_blank"
+          >
+            Visit GitHub Profile
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Repository List -->
+    <section id="repository-section">
+
+      <h2>Repositories</h2>
+
+      <ul id="repository-list">
+
+      </ul>
+
+    </section>
+
+    <!-- Search History -->
+    <section id="history-section">
+
+      <div id="history-header">
+        <h2>Recent Searches</h2>
+
+        <button id="btn-clear-history">
+          Clear History
+        </button>
+      </div>
+
+      <ul id="history-list">
+
+      </ul>
+
+    </section>
+
+  </main>
+
+  <script src="storage.js"></script>
+  <script src="api.js"></script>
+  <script src="ui.js"></script>
+  <script src="history.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

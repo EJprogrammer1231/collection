@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smart POS System — manage products, ring up sales, and track daily revenue.">
+    <title>Smart POS System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- ================= HEADER ================= -->
+    <header id="header">
+        <h1>Smart POS System</h1>
+
+        <nav class="header-actions" aria-label="Main sections">
+            <button id="btn-dashboard" type="button" aria-current="page">Dashboard</button>
+            <button id="btn-products" type="button">Products</button>
+            <button id="btn-history" type="button">Sales History</button>
+        </nav>
+    </header>
+
+    <main id="main-content">
+
+        <!-- ================= DASHBOARD ================= -->
+        <section id="dashboard" aria-label="Daily summary">
+
+            <div class="card">
+                <h3>Today's Sales</h3>
+                <p id="today-sales">₱0.00</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Orders</h3>
+                <p id="total-orders">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Products</h3>
+                <p id="total-products">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Low Stock</h3>
+                <p id="low-stock">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Top Selling</h3>
+                <p id="top-selling">-</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Revenue</h3>
+                <p id="total-revenue">₱0.00</p>
+            </div>
+
+        </section>
+
+        <!-- ================= PRODUCT MANAGEMENT ================= -->
+
+        <section id="product-management" aria-labelledby="product-management-title">
+
+            <h2 id="product-management-title">Product Management</h2>
+
+            <form id="product-form" novalidate>
+
+                <div class="field">
+                    <label class="visually-hidden" for="input-name">Product name</label>
+                    <input
+                        type="text"
+                        id="input-name"
+                        name="name"
+                        placeholder="Product Name"
+                        autocomplete="off"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label class="visually-hidden" for="input-price">Price</label>
+                    <input
+                        type="number"
+                        id="input-price"
+                        name="price"
+                        placeholder="Price"
+                        min="0"
+                        step="0.01"
+                        inputmode="decimal"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label class="visually-hidden" for="input-stock">Stock</label>
+                    <input
+                        type="number"
+                        id="input-stock"
+                        name="stock"
+                        placeholder="Stock"
+                        min="0"
+                        step="1"
+                        inputmode="numeric"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label class="visually-hidden" for="input-category">Category</label>
+                    <select id="input-category" name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="drinks">Drinks</option>
+                        <option value="foods">Foods</option>
+                        <option value="snacks">Snacks</option>
+                        <option value="desserts">Desserts</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+
+                <button type="submit">
+                    Save Product
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- ================= SEARCH ================= -->
+
+        <section id="search-section" aria-label="Search and filter products">
+
+            <label class="visually-hidden" for="input-search">Search product</label>
+            <input
+                type="search"
+                id="input-search"
+                placeholder="Search Product..."
+                autocomplete="off"
+            >
+
+            <label class="visually-hidden" for="filter-category">Filter by category</label>
+            <select id="filter-category">
+                <option value="all">All Categories</option>
+                <option value="Drinks">Drinks</option>
+                <option value="Foods">Foods</option>
+                <option value="Snacks">Snacks</option>
+                <option value="Desserts">Desserts</option>
+                <option value="Others">Others</option>
+            </select>
+
+        </section>
+
+        <!-- ================= PRODUCT TABLE ================= -->
+
+        <section id="products" aria-labelledby="products-title">
+
+            <h2 id="products-title" class="visually-hidden">Product List</h2>
+
+            <table>
+
+                <caption class="visually-hidden">List of all products with price, stock, and actions</caption>
+
+                <thead>
+
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="product-list">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- ================= SHOPPING CART ================= -->
+
+        <section id="cart" aria-labelledby="cart-title">
+
+            <h2 id="cart-title">Shopping Cart</h2>
+
+            <div id="cart-items" aria-live="polite">
+
+            </div>
+
+            <div class="cart-summary">
+
+                <p>
+                    <span>Subtotal</span>
+                    <span id="subtotal">₱0.00</span>
+                </p>
+
+                <p>
+                    <span>Discount</span>
+                    <span id="discount">₱0.00</span>
+                </p>
+
+                <p>
+                    <span>Tax</span>
+                    <span id="tax">₱0.00</span>
+                </p>
+
+                <h3>
+                    <span>Grand Total</span>
+                    <span id="grand-total">₱0.00</span>
+                </h3>
+
+            </div>
+
+        </section>
+
+        <!-- ================= CHECKOUT ================= -->
+
+        <section id="checkout" aria-labelledby="checkout-title">
+
+            <h2 id="checkout-title">Checkout</h2>
+
+            <label class="visually-hidden" for="input-cash">Cash received</label>
+            <input
+                type="number"
+                id="input-cash"
+                placeholder="Cash"
+                min="0"
+                step="0.01"
+                inputmode="decimal"
+            >
+
+            <p>
+                <span>Change</span>
+                <span id="change">₱0.00</span>
+            </p>
+
+            <button id="btn-checkout" type="button">
+                Complete Payment
+            </button>
+
+        </section>
+
+        <!-- ================= SALES HISTORY ================= -->
+
+        <section id="sales-history" aria-labelledby="sales-history-title">
+
+            <h2 id="sales-history-title">Sales History</h2>
+
+            <table>
+
+                <caption class="visually-hidden">Past transactions with receipt number, date, items, and total</caption>
+
+                <thead>
+
+                    <tr>
+                        <th scope="col">Receipt #</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Items</th>
+                        <th scope="col">Total</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="history-list">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+    <script src="js/storage.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/history.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>

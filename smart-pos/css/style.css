@@ -1,0 +1,808 @@
+/* =====================================================
+   SMART POS SYSTEM — STYLESHEET
+   Design concept: a real till receipt, brought to screen.
+   Numbers set in mono (like a receipt printer), dashed
+   "perforation" lines, torn-paper edge on the cart panel.
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* ---------- Design tokens ---------- */
+:root {
+    --ink: #1A1D1A;
+    --ink-soft: #565B54;
+    --paper: #FAF9F5;
+    --panel: #FFFFFF;
+    --line: #E3E0D6;
+    --line-strong: #C9C5B6;
+
+    --till-green: #1E6E4C;
+    --till-green-dark: #154F37;
+    --till-green-light: #E7F1EB;
+
+    --peso-gold: #B9791F;
+    --peso-gold-light: #FBF0DD;
+
+    --alert-red: #B3412C;
+    --alert-red-light: #FBEAE6;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --shadow-card: 0 1px 2px rgba(26,29,26,0.04), 0 4px 12px rgba(26,29,26,0.05);
+}
+
+/* ---------- Reset ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
+    padding-bottom: 60px;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--ink);
+    letter-spacing: -0.01em;
+}
+
+h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed var(--line-strong);
+}
+
+button {
+    font-family: var(--font-body);
+    cursor: pointer;
+    border: none;
+    border-radius: var(--radius-sm);
+}
+
+input, select {
+    font-family: var(--font-body);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+:focus-visible {
+    outline: 2px solid var(--till-green);
+    outline-offset: 2px;
+}
+
+/* Screen-reader-only text — keeps labels/captions accessible
+   without showing them visually next to placeholder-led inputs. */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.skip-link {
+    position: absolute;
+    top: -48px;
+    left: 12px;
+    z-index: 100;
+    background: var(--till-green-dark);
+    color: #FFFFFF;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+    top: 12px;
+}
+
+#main-content {
+    scroll-margin-top: 80px;
+}
+
+/* ---------- Header ---------- */
+#header {
+    background: var(--till-green-dark);
+    color: #FDFCF9;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+#header h1 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #FDFCF9;
+}
+
+#header h1::before {
+    content: "₱ ";
+    color: #7FBE9E;
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.header-actions button {
+    background: transparent;
+    color: #DCEFE4;
+    padding: 9px 16px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: var(--radius-sm);
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.header-actions button:hover {
+    background: rgba(255,255,255,0.1);
+    color: #FFFFFF;
+}
+
+.header-actions button.active {
+    background: #FFFFFF;
+    color: var(--till-green-dark);
+    border-color: #FFFFFF;
+}
+
+/* ---------- Main layout ----------
+   Sections are re-arranged into a proper POS floor plan
+   using grid-template-areas: a wide left column for
+   catalog/products, a narrow right column that behaves
+   like the till (cart + checkout). */
+main {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 28px 32px 0;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 24px;
+    grid-template-areas:
+        "dashboard   dashboard"
+        "management  cart"
+        "search      checkout"
+        "products    products"
+        "history     history";
+    align-items: start;
+}
+
+/* Every grid item gets min-width: 0 — without this, children with
+   an intrinsic minimum size (like the tables below) refuse to
+   shrink and spill into the next column, which is what was
+   causing the overlap. */
+main > * {
+    min-width: 0;
+}
+
+#dashboard   { grid-area: dashboard; }
+#product-management { grid-area: management; }
+#search-section { grid-area: search; }
+#products    { grid-area: products; }
+#cart        { grid-area: cart; }
+#checkout    { grid-area: checkout; }
+#sales-history { grid-area: history; }
+
+/* ---------- Dashboard ---------- */
+#dashboard {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+}
+
+.card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 18px 16px;
+    box-shadow: var(--shadow-card);
+}
+
+.card h3 {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-family: var(--font-mono);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--till-green-dark);
+}
+
+.card:nth-child(4) p { color: var(--alert-red); }   /* Low Stock */
+.card:nth-child(6) p { color: var(--peso-gold); }   /* Total Revenue */
+
+/* ---------- Panels shared by form / table / search sections ---------- */
+#product-management,
+#products,
+#sales-history {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 22px;
+    box-shadow: var(--shadow-card);
+}
+
+/* ---------- Product form ---------- */
+#product-form {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr auto;
+    gap: 10px;
+    align-items: stretch;
+}
+
+#product-form .field {
+    display: flex;
+}
+
+#product-form input,
+#product-form select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--paper);
+    font-size: 0.9rem;
+    color: var(--ink);
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+#product-form input::placeholder {
+    color: #9A9686;
+}
+
+#product-form input:focus,
+#product-form select:focus {
+    border-color: var(--till-green);
+    background: #FFFFFF;
+}
+
+#product-form button {
+    background: var(--till-green);
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 11px 18px;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+}
+
+#product-form button:hover {
+    background: var(--till-green-dark);
+}
+
+/* ---------- Search / filter ---------- */
+#search-section {
+    display: flex;
+    gap: 10px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+#input-search,
+#filter-category {
+    padding: 10px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--panel);
+    font-size: 0.88rem;
+    color: var(--ink);
+}
+
+#input-search {
+    flex: 1;
+}
+
+#input-search:focus,
+#filter-category:focus {
+    border-color: var(--till-green);
+}
+
+/* ---------- Product table ---------- */
+#products,
+#sales-history {
+    overflow-x: auto;
+}
+
+#products table,
+#sales-history table {
+    min-width: 560px;
+}
+
+#products table thead th {
+    text-align: left;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    padding: 0 10px 10px;
+    border-bottom: 2px dashed var(--line-strong);
+}
+
+#products table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+#products table td:nth-child(3) {
+    font-family: var(--font-mono);
+    font-weight: 600;
+}
+
+#products table tbody tr:hover {
+    background: var(--till-green-light);
+}
+
+#products table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+#product-list:empty::after {
+    content: "No products yet — add one using the form above.";
+    display: block;
+    padding: 20px 10px;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 0.88rem;
+}
+
+/* Suggested hooks for JS-rendered rows/badges */
+.badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 999px;
+}
+
+.badge-in-stock { background: var(--till-green-light); color: var(--till-green-dark); }
+.badge-low-stock { background: var(--peso-gold-light); color: var(--peso-gold); }
+.badge-out-of-stock { background: var(--alert-red-light); color: var(--alert-red); }
+
+.btn-icon,
+.btn-edit,
+.btn-delete {
+    padding: 7px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    margin-right: 6px;
+}
+
+.btn-edit { background: var(--till-green-light); color: var(--till-green-dark); }
+.btn-edit:hover { background: var(--till-green); color: #FFF; }
+
+.btn-delete { background: var(--alert-red-light); color: var(--alert-red); }
+.btn-delete:hover { background: var(--alert-red); color: #FFF; }
+
+.edit-btn,
+.delete-btn,
+.add-to-cart {
+    padding: 7px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    margin-right: 6px;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.edit-btn { background: var(--till-green-light); color: var(--till-green-dark); }
+.edit-btn:hover { background: var(--till-green); color: #FFF; box-shadow: 0 2px 6px rgba(30,110,76,0.35); }
+.edit-btn:active { background: var(--till-green-dark); transform: scale(0.94); box-shadow: none; }
+
+.delete-btn { background: var(--alert-red-light); color: var(--alert-red); }
+.delete-btn:hover { background: var(--alert-red); color: #FFF; box-shadow: 0 2px 6px rgba(179,65,44,0.35); }
+.delete-btn:active { background: #8C331F; transform: scale(0.94); box-shadow: none; }
+
+.add-to-cart { background: var(--peso-gold-light); color: var(--peso-gold); }
+.add-to-cart:hover { background: var(--peso-gold); color: #FFF; box-shadow: 0 2px 6px rgba(185,121,31,0.35); }
+.add-to-cart:active { background: #8F5F17; transform: scale(0.94); box-shadow: none; }
+
+/* ---------- Cart (styled like a printed receipt) ---------- */
+#cart {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 22px 20px 20px;
+    box-shadow: var(--shadow-card);
+    font-family: var(--font-mono);
+    position: relative;
+}
+
+/* torn-paper notch along the bottom edge, no images */
+#cart::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -9px;
+    height: 10px;
+    background:
+        linear-gradient(135deg, var(--panel) 50%, transparent 50%),
+        linear-gradient(45deg, var(--panel) 50%, transparent 50%);
+    background-size: 16px 16px;
+    background-position: bottom;
+}
+
+#cart h2 {
+    font-family: var(--font-display);
+}
+
+#cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 60px;
+    max-height: 320px;
+    overflow-y: auto;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+}
+
+#cart-items:empty::before {
+    content: "No items yet — add products from the catalog.";
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    font-style: italic;
+}
+
+/* Suggested class for each JS-rendered cart row */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.86rem;
+    border-bottom: 1px dashed var(--line);
+    padding-bottom: 8px;
+}
+
+.cart-item .qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+}
+
+.cart-item .qty-controls button {
+    width: 22px;
+    height: 22px;
+    background: var(--paper);
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    line-height: 1;
+}
+
+.cart-item .qty-controls button:hover {
+    background: var(--till-green-light);
+}
+
+.cart-summary {
+    border-top: 2px dashed var(--line-strong);
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cart-summary p {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+}
+
+.cart-summary p span:last-child {
+    color: var(--ink);
+    font-weight: 500;
+}
+
+.cart-summary h3 {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    color: var(--till-green-dark);
+    margin-top: 6px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+}
+
+/* ---------- Checkout ---------- */
+#checkout {
+    background: var(--till-green-dark);
+    color: #FDFCF9;
+    border-radius: var(--radius-md);
+    padding: 20px;
+    box-shadow: var(--shadow-card);
+}
+
+#checkout h2 {
+    color: #FDFCF9;
+    border-bottom-color: rgba(255,255,255,0.25);
+}
+
+#checkout #input-cash {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: var(--radius-sm);
+    background: rgba(255,255,255,0.08);
+    color: #FFFFFF;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+#checkout #input-cash::placeholder {
+    color: rgba(255,255,255,0.55);
+}
+
+#checkout #input-cash:focus {
+    border-color: #FFFFFF;
+    background: rgba(255,255,255,0.14);
+}
+
+#checkout p {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+    color: #DCEFE4;
+}
+
+#checkout #change {
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+#btn-checkout {
+    width: 100%;
+    background: var(--peso-gold);
+    color: #2A1B03;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 13px;
+    letter-spacing: 0.02em;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+#btn-checkout:hover {
+    background: #D28F2C;
+}
+
+#btn-checkout:active {
+    transform: scale(0.98);
+}
+
+/* ---------- Sales history ---------- */
+#sales-history table thead th {
+    text-align: left;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    padding: 0 10px 10px;
+    border-bottom: 2px dashed var(--line-strong);
+}
+
+#sales-history table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.88rem;
+}
+
+#sales-history table td:first-child,
+#sales-history table td:last-child {
+    font-family: var(--font-mono);
+}
+
+#history-list:empty::after {
+    content: "No transactions recorded yet.";
+    display: block;
+    padding: 20px 10px;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 0.88rem;
+}
+
+/* ---------- Responsive ---------- */
+
+/* Tablet: collapse the two-column till layout into a single
+   stacked column, cart/checkout move up near the catalog. */
+@media (max-width: 980px) {
+    main {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "dashboard"
+            "management"
+            "search"
+            "cart"
+            "checkout"
+            "products"
+            "history";
+        padding: 20px 18px 0;
+        gap: 18px;
+    }
+
+    #dashboard {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    #product-form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #product-form button {
+        grid-column: span 2;
+    }
+
+    #cart::after {
+        display: none; /* torn edge only reads well full-width on desktop */
+    }
+}
+
+/* Small tablet / large phone */
+@media (max-width: 720px) {
+    #header {
+        padding: 14px 18px;
+    }
+
+    #header h1 {
+        font-size: 1.1rem;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .header-actions button {
+        flex: 1;
+        text-align: center;
+        padding: 9px 10px;
+        font-size: 0.8rem;
+    }
+
+    #dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+        padding: 14px 12px;
+    }
+
+    .card p {
+        font-size: 1.15rem;
+    }
+
+    #product-management,
+    #products,
+    #sales-history,
+    #cart,
+    #checkout {
+        padding: 16px;
+    }
+}
+
+/* Phone */
+@media (max-width: 560px) {
+    body {
+        font-size: 14px;
+        padding-bottom: 40px;
+    }
+
+    #header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    #dashboard {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    #product-form {
+        grid-template-columns: 1fr;
+    }
+
+    #product-form button {
+        grid-column: span 1;
+    }
+
+    #search-section {
+        flex-direction: column;
+    }
+
+    #input-search,
+    #filter-category {
+        width: 100%;
+    }
+
+    /* cart rows: stack name/qty/price instead of squeezing horizontally */
+    .cart-item {
+        flex-wrap: wrap;
+        gap: 6px 10px;
+    }
+
+    .cart-summary h3 {
+        font-size: 1rem;
+    }
+
+    #checkout {
+        padding: 18px 16px;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+    #dashboard {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card p {
+        font-size: 1rem;
+    }
+
+    #header h1 {
+        font-size: 1rem;
+    }
+
+    .header-actions {
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
