@@ -1,0 +1,464 @@
+/* ===================================================================
+   WAREHOUSE MANAGEMENT SYSTEM — STYLESHEET
+   Design language: corporate operations dashboard. Clean surfaces,
+   restrained navy accent, soft elevation instead of heavy rules.
+   Built to read as enterprise software: calm, precise, trustworthy.
+   No icons. No imagery.
+=================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* --- Neutrals --- */
+  --white:      #FFFFFF;
+  --surface:    #F6F7F9;   /* page background */
+  --border:     #E3E6EB;   /* default hairline */
+  --border-strong: #C7CCD4;
+  --ink:        #171A21;   /* primary text */
+  --ink-soft:   #4A5160;   /* secondary text */
+  --muted:      #8A93A3;   /* tertiary / placeholder */
+
+  /* --- Accent: single navy family --- */
+  --navy-900:   #0E2340;
+  --navy-700:   #163A63;
+  --navy-600:   #1D4E8C;
+  --navy-500:   #2563EB;   /* primary accent — buttons, links, focus */
+  --navy-100:   #E7EEFB;   /* accent tint for hover/selection */
+  --navy-050:   #F2F6FD;
+
+  /* --- Semantic (still restrained, tied to the accent, not new hues) --- */
+  --alert:      #B4232C;   /* reserved only for out-of-stock emphasis */
+
+  /* --- Type --- */
+  --font-body:  'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:  'JetBrains Mono', 'Courier New', monospace;
+
+  /* --- Structure --- */
+  --radius-sm:  6px;
+  --radius:     10px;
+  --shadow-sm:  0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md:  0 4px 12px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.08);
+  --shadow-lg:  0 12px 28px rgba(16, 24, 40, 0.10), 0 2px 6px rgba(16, 24, 40, 0.06);
+
+  --page-pad: clamp(1.1rem, 4vw, 3rem);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 { font-variant-numeric: tabular-nums; }
+
+/* ===================================================================
+   ACCESSIBILITY FLOOR
+=================================================================== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--navy-500);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+::selection {
+  background: var(--navy-100);
+  color: var(--navy-900);
+}
+
+/* ===================================================================
+   HEADER
+=================================================================== */
+header {
+  background: var(--navy-900);
+  background-image: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+  color: var(--white);
+  padding: clamp(1.75rem, 5vw, 2.5rem) var(--page-pad);
+  position: relative;
+}
+
+header h1 {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3.4vw, 1.85rem);
+  letter-spacing: -0.01em;
+}
+
+header::after {
+  content: "Inventory & Logistics Control";
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.86rem;
+  font-weight: 400;
+  color: #B9C8E4;
+}
+
+/* ===================================================================
+   SECTION SHELL
+=================================================================== */
+section {
+  max-width: 1240px;
+  margin: clamp(2rem, 4vw, 2.75rem) auto;
+  padding: 0 var(--page-pad);
+}
+
+section > h2 {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin: 0 0 1rem;
+  padding-left: 0.85rem;
+  border-left: 4px solid var(--navy-500);
+  line-height: 1.3;
+}
+
+/* ===================================================================
+   DASHBOARD
+=================================================================== */
+#dashboard {
+  max-width: 1240px;
+  margin: clamp(1.75rem, 4vw, 2.5rem) auto 0;
+  padding: 0 var(--page-pad);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem 1.3rem;
+  min-height: 104px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.card h3 {
+  margin: 0 0 0.6rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+}
+
+.card h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3.6vw, 1.9rem);
+  font-weight: 800;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  word-break: break-word;
+}
+
+/* Total Inventory Value gets the accent treatment — this is the
+   number leadership actually watches */
+.card:has(#inventory-value) {
+  border-color: var(--navy-500);
+  background: linear-gradient(180deg, var(--navy-050) 0%, var(--white) 60%);
+}
+.card:has(#inventory-value) h2 { color: var(--navy-600); }
+
+/* Out of stock is the one true alert — reserved use of --alert */
+.card:has(#out-stock) h2 { color: var(--alert); }
+.card:has(#out-stock) h3::after { content: " · needs action"; color: var(--alert); font-weight: 500; }
+
+.card:has(#low-stock) h3::after { content: " · monitor"; color: var(--ink-soft); font-weight: 500; }
+
+/* ===================================================================
+   FORMS
+=================================================================== */
+form {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem 1.5rem 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: flex-end;
+}
+
+form label,
+.field-label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 0.35rem;
+}
+
+form input,
+form select {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--ink);
+  min-width: 170px;
+  min-height: 44px;
+  flex: 1 1 190px;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+form input::placeholder { color: var(--muted); }
+
+form input:hover,
+form select:hover { border-color: var(--navy-500); }
+
+form input:focus,
+form select:focus {
+  border-color: var(--navy-500);
+  box-shadow: 0 0 0 3px var(--navy-100);
+}
+
+form button {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  background: var(--navy-500);
+  color: var(--white);
+  border: 1px solid var(--navy-500);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1.5rem;
+  min-height: 44px;
+  cursor: pointer;
+  flex: 0 0 auto;
+  box-shadow: var(--shadow-sm);
+  transition: background 0.12s ease, box-shadow 0.12s ease, transform 0.08s ease;
+}
+
+form button:hover {
+  background: var(--navy-600);
+  box-shadow: var(--shadow-md);
+}
+
+form button:active { transform: translateY(1px); }
+
+form button:disabled {
+  background: var(--border);
+  border-color: var(--border);
+  color: var(--muted);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ===================================================================
+   SEARCH & FILTER BAR
+=================================================================== */
+#search-product,
+#filter-category,
+#filter-warehouse,
+#sort-product {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  padding: 0.65rem 0.95rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--ink);
+  min-height: 44px;
+  margin: 0 0.6rem 0.6rem 0;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+#search-product { min-width: 260px; width: 100%; max-width: 420px; }
+
+#search-product:focus,
+#filter-category:focus,
+#filter-warehouse:focus,
+#sort-product:focus {
+  border-color: var(--navy-500);
+  box-shadow: 0 0 0 3px var(--navy-100);
+}
+
+/* ===================================================================
+   TABLES
+=================================================================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  box-shadow: var(--shadow-sm);
+}
+
+thead {
+  background: var(--navy-050);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+thead th {
+  color: var(--navy-900);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: left;
+  padding: 0.9rem 1rem;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+}
+
+tbody td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+}
+
+tbody tr:hover { background: var(--navy-050); }
+
+tbody tr:last-child td { border-bottom: none; }
+
+tbody td[colspan] {
+  text-align: center !important;
+  font-style: italic;
+  color: var(--muted);
+  padding: 2.5rem 1rem;
+}
+
+/* Utility: prefix a JS-injected numeric cell with the peso sign
+   without hardcoding it into the number string itself.
+   Usage: <td class="currency">1250.00</td> */
+.currency::before {
+  content: "₱";
+  margin-right: 0.15em;
+  color: var(--ink-soft);
+}
+
+/* ===================================================================
+   TABLE ACTION BUTTONS
+=================================================================== */
+tbody button {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  margin-right: 0.4rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--white);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+tbody button:hover {
+  border-color: var(--navy-500);
+  color: var(--navy-600);
+  background: var(--navy-050);
+}
+
+tbody button.btn-delete {
+  border-color: var(--alert);
+  color: var(--alert);
+}
+
+tbody button.btn-delete:hover {
+  background: var(--alert);
+  border-color: var(--alert);
+  color: var(--white);
+}
+
+/* ===================================================================
+   FOOTER
+=================================================================== */
+footer {
+  margin-top: 3rem;
+  padding: 1.75rem var(--page-pad);
+  background: var(--white);
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+}
+
+/* ===================================================================
+   RESPONSIVE
+=================================================================== */
+@media (max-width: 1024px) {
+  #dashboard { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 760px) {
+  #dashboard { grid-template-columns: repeat(2, 1fr); }
+
+  section > h2 { font-size: 1rem; }
+
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  form input, form select, form button { min-width: 0; flex: 1 1 auto; }
+  form button { width: 100%; }
+
+  #search-product { max-width: none; }
+  #filter-category, #filter-warehouse, #sort-product {
+    width: calc(50% - 0.3rem);
+    margin-right: 0.3rem;
+  }
+  #filter-warehouse, #sort-product { margin-right: 0; }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    border-radius: var(--radius-sm);
+    font-size: 0.86rem;
+    mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+  }
+  thead { position: static; }
+  thead th, tbody td { padding: 0.7rem 0.85rem; }
+}
+
+@media (max-width: 560px) {
+  section { margin: 1.75rem auto; }
+  #dashboard { grid-template-columns: repeat(2, 1fr); }
+  .card { min-height: 88px; padding: 1rem; }
+
+  form input, form select, form button { min-height: 46px; }
+
+  #filter-category, #filter-warehouse, #sort-product {
+    width: 100%;
+    margin-right: 0;
+  }
+  #search-product { min-width: 0; }
+}
+
+@media (max-width: 380px) {
+  #dashboard { grid-template-columns: 1fr; }
+  .card { flex-direction: row; align-items: baseline; justify-content: space-between; }
+}

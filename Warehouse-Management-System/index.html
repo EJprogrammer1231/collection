@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header>
+        <h1>Warehouse Management System</h1>
+    </header>
+
+    <!-- ================= DASHBOARD ================= -->
+    <section id="dashboard">
+
+        <div class="card">
+            <h3>Total Warehouses</h3>
+            <h2 id="total-warehouses">0</h2>
+        </div>
+
+        <div class="card">
+            <h3>Total Products</h3>
+            <h2 id="total-products">0</h2>
+        </div>
+
+        <div class="card">
+            <h3>Total Inventory Value</h3>
+            <h2 id="inventory-value">₱0.00</h2>
+        </div>
+
+        <div class="card">
+            <h3>Low Stock</h3>
+            <h2 id="low-stock">0</h2>
+        </div>
+
+        <div class="card">
+            <h3>Out of Stock</h3>
+            <h2 id="out-stock">0</h2>
+        </div>
+
+        <div class="card">
+            <h3>Most Active Warehouse</h3>
+            <h2 id="active-warehouse">-</h2>
+        </div>
+
+    </section>
+
+    <!-- ================= WAREHOUSE FORM ================= -->
+
+    <section>
+
+        <h2>Add Warehouse</h2>
+
+        <form id="warehouse-form">
+
+            <input
+                type="text"
+                id="warehouse-name"
+                placeholder="Warehouse Name"
+                required
+            >
+
+            <input
+                type="text"
+                id="warehouse-address"
+                placeholder="Warehouse Address"
+                required
+            >
+
+            <button type="submit">Add Warehouse</button>
+
+        </form>
+
+    </section>
+
+    <!-- ================= PRODUCT FORM ================= -->
+
+    <section>
+
+        <h2>Add Product</h2>
+
+        <form id="product-form">
+
+            <input
+                type="text"
+                id="product-name"
+                placeholder="Product Name"
+                required
+            >
+
+            <input
+                type="text"
+                id="product-sku"
+                placeholder="SKU"
+                required
+            >
+
+            <input
+                type="text"
+                id="product-category"
+                placeholder="Category"
+                required
+            >
+
+            <input
+                type="text"
+                id="product-supplier"
+                placeholder="Supplier"
+                required
+            >
+
+            <input
+                type="number"
+                id="product-cost"
+                placeholder="Cost"
+                required
+            >
+
+            <input
+                type="number"
+                id="product-price"
+                placeholder="Selling Price"
+                required
+            >
+
+            <button>Add Product</button>
+
+        </form>
+
+    </section>
+
+    <!-- ================= STOCK ENTRY ================= -->
+
+    <section>
+
+        <h2>Stock In</h2>
+
+        <form id="stock-form">
+
+            <select id="stock-warehouse">
+                <option>Select Warehouse</option>
+            </select>
+
+            <select id="stock-product">
+                <option>Select Product</option>
+            </select>
+
+            <input
+                type="number"
+                id="stock-quantity"
+                placeholder="Quantity"
+            >
+
+            <button>Add Stock</button>
+
+        </form>
+
+    </section>
+
+    <!-- ================= TRANSFER STOCK ================= -->
+
+    <section>
+
+        <h2>Transfer Stock</h2>
+
+        <form id="transfer-form">
+
+            <select id="transfer-from">
+                <option>From Warehouse</option>
+            </select>
+
+            <select id="transfer-to">
+                <option>To Warehouse</option>
+            </select>
+
+            <select id="transfer-product">
+                <option>Select Product</option>
+            </select>
+
+            <input
+                type="number"
+                id="transfer-quantity"
+                placeholder="Quantity"
+            >
+
+            <button>Transfer</button>
+
+        </form>
+
+    </section>
+
+    <!-- ================= FILTER ================= -->
+
+    <section>
+
+        <h2>Search & Filter</h2>
+
+        <input
+            type="text"
+            id="search-product"
+            placeholder="Search Product..."
+        >
+
+        <select id="filter-category">
+            <option>All Categories</option>
+        </select>
+
+        <select id="filter-warehouse">
+            <option>All Warehouses</option>
+        </select>
+
+        <select id="sort-product">
+            <option>Sort By</option>
+            <option>Name</option>
+            <option>Price</option>
+            <option>Quantity</option>
+            <option>Category</option>
+        </select>
+
+    </section>
+
+    <!-- ================= INVENTORY TABLE ================= -->
+
+    <section>
+
+        <h2>Inventory</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Warehouse</th>
+
+                    <th>Product</th>
+
+                    <th>SKU</th>
+
+                    <th>Category</th>
+
+                    <th>Supplier</th>
+
+                    <th>Cost</th>
+
+                    <th>Price</th>
+
+                    <th>Quantity</th>
+
+                    <th>Inventory Value</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="inventory-list">
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+    <!-- ================= TRANSACTION HISTORY ================= -->
+
+    <section>
+
+        <h2>Stock Movement History</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <th>Type</th>
+
+                    <th>Warehouse</th>
+
+                    <th>Product</th>
+
+                    <th>Quantity</th>
+
+                    <th>Details</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="history-list">
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>Warehouse Management System</p>
+
+    </footer>
+
+    <script src="js/storage.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/warehouse.js"></script>
+    <script src="js/product.js"></script>
+    <script src="js/inventory.js"></script>
+    <script src="js/transfer.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/history.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
