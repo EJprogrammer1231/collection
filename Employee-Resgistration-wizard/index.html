@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Registration Wizard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <section class="main-section-all">
+
+    <section class="section-form-1">
+      <form id="form-one">
+        <input 
+        type="text" 
+        placeholder="Full Name" 
+        id="inputFullName"
+        >
+        <input 
+        type="number" 
+        placeholder="Age" 
+        id="inputAge"
+        >
+        <input 
+        type="email" 
+        placeholder="Email" 
+        id="inputEmail"
+        >
+        <button type="submit">Next</button>
+      </form>
+    </section>
+
+    <section class="section-form-2">
+      <form id="form-two">
+        <input 
+        type="number" 
+        placeholder="Employee ID" 
+        id="inputEmployeeId"
+        >
+        <input 
+        type="text" 
+        placeholder="Department" 
+        id="inputDepartment"
+        >
+        <input 
+        type="text" 
+        placeholder="Position" 
+        id="inputPosition"
+        >
+        <input 
+        type="number" 
+        placeholder="Salary" 
+        id="inputSalary"
+        >
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <section class="section-table-list">
+      <table>
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Employee ID</th>
+            <th>Department</th>
+            <th>Position</th>
+            <th>Salary</th>
+          </tr>
+        </thead>
+
+        <tbody id="display-table"></tbody>
+      </table>
+    </section>
+  </section>
+
+  <script src="js/storage.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
