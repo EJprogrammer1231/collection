@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Application Tracker</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Job Application Tracker</h1>
+    <p>Manage all your job applications in one place.</p>
+  </header>
+
+  <main>
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section id="dashboard">
+
+      <div class="card">
+        <h2>Applications</h2>
+        <p id="total-applications">0</p>
+      </div>
+
+      <div class="card">
+        <h2>Interview</h2>
+        <p id="total-interviews">0</p>
+      </div>
+
+      <div class="card">
+        <h2>Offers</h2>
+        <p id="total-offers">0</p>
+      </div>
+
+      <div class="card">
+        <h2>Rejected</h2>
+        <p id="total-rejected">0</p>
+      </div>
+
+      <div class="card">
+        <h2>Wishlist</h2>
+        <p id="total-wishlist">0</p>
+      </div>
+
+    </section>
+
+    <!-- ================= ADD APPLICATION ================= -->
+
+    <section>
+
+      <h2>Add New Application</h2>
+
+      <form id="application-form">
+
+        <input
+          type="text"
+          id="input-company"
+          placeholder="Company"
+          required
+        >
+
+        <input
+          type="text"
+          id="input-position"
+          placeholder="Position"
+          required
+        >
+
+        <input
+          type="text"
+          id="input-location"
+          placeholder="Location"
+        >
+
+        <input
+          type="number"
+          id="input-salary"
+          placeholder="Expected Salary"
+        >
+
+        <input
+          type="date"
+          id="input-date"
+        >
+
+        <select id="input-status">
+
+          <option value="wishlist">Wishlist</option>
+          <option value="applied">Applied</option>
+          <option value="interview">Interview</option>
+          <option value="technical Exam">Technical Exam</option>
+          <option value="final Interview">Final Interview</option>
+          <option value="offer">Offer</option>
+          <option value="rejected">Rejected</option>
+
+        </select>
+
+        <textarea
+          id="input-notes"
+          placeholder="Notes"
+        ></textarea>
+
+        <label>
+          <input
+            type="checkbox"
+            id="input-favorite"
+          >
+          Favorite
+        </label>
+
+        <button type="submit">
+          Save Application
+        </button>
+
+      </form>
+
+    </section>
+
+    <!-- ================= SEARCH & FILTER ================= -->
+
+    <section>
+
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search company or position..."
+      >
+
+      <select id="filter-status">
+
+        <option value="All">All Status</option>
+        <option value="Wishlist">Wishlist</option>
+        <option value="Applied">Applied</option>
+        <option value="Interview">Interview</option>
+        <option value="Technical Exam">Technical Exam</option>
+        <option value="Final Interview">Final Interview</option>
+        <option value="Offer">Offer</option>
+        <option value="Rejected">Rejected</option>
+
+      </select>
+
+      <select id="sort-by">
+
+        <option value="Newest">Newest</option>
+        <option value="Oldest">Oldest</option>
+        <option value="Salary High">Salary High</option>
+        <option value="Salary Low">Salary Low</option>
+        <option value="Company A-Z">Company A-Z</option>
+
+      </select>
+
+    </section>
+
+    <!-- ================= GITHUB SEARCH ================= -->
+
+    <section>
+
+      <h2>Company GitHub Lookup</h2>
+
+      <input
+        type="text"
+        id="github-search"
+        placeholder="GitHub username"
+      >
+
+      <button id="btn-search-github">
+        Search
+      </button>
+
+      <div id="github-profile">
+
+      </div>
+
+    </section>
+
+    <!-- ================= APPLICATION TABLE ================= -->
+
+    <section>
+
+      <h2>Applications</h2>
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Company</th>
+            <th>Position</th>
+            <th>Location</th>
+            <th>Salary</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Favorite</th>
+            <th>Actions</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="application-list">
+
+        </tbody>
+
+      </table>
+
+      <p id="empty-message">
+        No applications found.
+      </p>
+
+    </section>
+
+    <!-- ================= STATISTICS ================= -->
+
+    <section>
+
+      <h2>Statistics</h2>
+
+      <div>
+        <p>Average Salary</p>
+        <h3 id="average-salary">$0</h3>
+      </div>
+
+      <div>
+        <p>Highest Salary</p>
+        <h3 id="highest-salary">$0</h3>
+      </div>
+
+      <div>
+        <p>Lowest Salary</p>
+        <h3 id="lowest-salary">$0</h3>
+      </div>
+
+      <div>
+        <p>Most Applied City</p>
+        <h3 id="popular-city">-</h3>
+      </div>
+
+      <div>
+        <p>Most Common Status</p>
+        <h3 id="popular-status">-</h3>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/statistics.js"></script>
+  <script src="js/github.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/applications.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

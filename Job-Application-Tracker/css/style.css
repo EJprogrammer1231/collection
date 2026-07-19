@@ -1,0 +1,542 @@
+/* ==========================================================================
+   Job Application Tracker — stylesheet
+   Palette: deep ink navy + warm gold "offer" accent, on a cool paper ground.
+   Type: Space Grotesk (display) / Inter (body) / IBM Plex Mono (numbers, dates)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  /* --- Color tokens --- */
+  --ink-900: #0f1b2d;
+  --ink-700: #1e3350;
+  --ink-500: #33507a;
+  --slate-500: #5b6b82;
+  --slate-300: #9aa7b8;
+  --paper: #f5f7fa;
+  --surface: #ffffff;
+  --line: #e2e6ec;
+  --line-strong: #cbd3de;
+  --gold-500: #c9972c;
+  --gold-100: #faf1dd;
+
+  /* --- Status colors --- */
+  --st-wishlist: #6b7280;
+  --st-wishlist-bg: #f0f1f3;
+  --st-applied: #2d6cdf;
+  --st-applied-bg: #e9f0fe;
+  --st-interview: #b8860b;
+  --st-interview-bg: #fbf1dc;
+  --st-exam: #7b4fc9;
+  --st-exam-bg: #f1ebfb;
+  --st-final: #0f9a8e;
+  --st-final-bg: #e3f6f4;
+  --st-offer: #c9972c;
+  --st-offer-bg: #fbf1dc;
+  --st-rejected: #c04b4b;
+  --st-rejected-bg: #fbebea;
+
+  /* --- Type --- */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* --- Shape / motion --- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --shadow-card: 0 1px 2px rgba(15, 27, 45, 0.06), 0 1px 1px rgba(15, 27, 45, 0.04);
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink-900);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Header — the "ledger head": a thin gold rule under a navy masthead
+   ========================================================================== */
+
+header {
+  background: var(--ink-900);
+  color: var(--surface);
+  padding: 40px 32px 28px;
+  border-bottom: 3px solid var(--gold-500);
+}
+
+header h1 {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.9rem;
+  letter-spacing: -0.01em;
+}
+
+header p {
+  margin: 0;
+  color: var(--slate-300);
+  font-size: 0.95rem;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+/* ==========================================================================
+   Section rhythm
+   ========================================================================== */
+
+main > section {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-card);
+}
+
+main > section > h2 {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink-900);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ==========================================================================
+   Dashboard — five stat cards, gold rule reserved for the "Offers" tile
+   ========================================================================== */
+
+#dashboard {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+#dashboard .card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ink-500);
+  border-radius: var(--radius-md);
+  padding: 18px 16px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+
+#dashboard .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(15, 27, 45, 0.1);
+}
+
+#dashboard .card:has(#total-offers) {
+  border-top-color: var(--gold-500);
+}
+
+#dashboard .card h2 {
+  margin: 0 0 8px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--slate-500);
+}
+
+#dashboard .card p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--ink-900);
+}
+
+#dashboard .card:has(#total-offers) p {
+  color: var(--gold-500);
+}
+
+/* ==========================================================================
+   Forms — Add Application + filter/search row
+   ========================================================================== */
+
+#application-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+#application-form textarea {
+  grid-column: 1 / -1;
+  min-height: 70px;
+  resize: vertical;
+}
+
+#application-form label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--ink-700);
+}
+
+#application-form button {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--ink-900);
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  width: 100%;
+  transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+  outline: none;
+  border-color: var(--ink-500);
+  box-shadow: 0 0 0 3px rgba(30, 51, 80, 0.15);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--slate-300);
+}
+
+button {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--surface);
+  background: var(--ink-900);
+  border: 1px solid var(--ink-900);
+  border-radius: var(--radius-sm);
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.15s var(--ease), transform 0.1s var(--ease);
+}
+
+button:hover {
+  background: var(--ink-700);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* Search & filter row */
+main > section:has(#search-input) {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#search-input {
+  flex: 1 1 260px;
+}
+
+#filter-status,
+#sort-by {
+  flex: 0 1 180px;
+}
+
+/* GitHub lookup */
+main > section:has(#btn-search-github) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+main > section:has(#btn-search-github) h2 {
+  flex-basis: 100%;
+}
+
+#github-search {
+  flex: 1 1 240px;
+}
+
+#github-profile {
+  flex-basis: 100%;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--slate-500);
+}
+
+#github-profile:empty {
+  display: none;
+}
+
+/* ==========================================================================
+   Table — the core ledger. Left-edge stripe encodes status at a glance.
+   ========================================================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+thead th {
+  text-align: left;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--slate-500);
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--line-strong);
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--line);
+  border-left: 3px solid transparent;
+  transition: background 0.12s var(--ease);
+}
+
+tbody tr:hover {
+  background: var(--paper);
+}
+
+tbody td {
+  padding: 12px 14px;
+  vertical-align: middle;
+  color: var(--ink-700);
+}
+
+tbody td:nth-child(1) {
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+tbody td:nth-child(4),
+tbody td:nth-child(5) {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--slate-500);
+}
+
+/* Status-driven row stripe + badge, matched by data-status on the row/cell
+   (add data-status="Applied" etc. to <tr> or the status <td> for full effect) */
+tbody tr[data-status="Wishlist"]   { border-left-color: var(--st-wishlist); }
+tbody tr[data-status="Applied"]    { border-left-color: var(--st-applied); }
+tbody tr[data-status="Interview"]  { border-left-color: var(--st-interview); }
+tbody tr[data-status="Technical Exam"] { border-left-color: var(--st-exam); }
+tbody tr[data-status="Final Interview"] { border-left-color: var(--st-final); }
+tbody tr[data-status="Offer"]      { border-left-color: var(--st-offer); }
+tbody tr[data-status="Rejected"]   { border-left-color: var(--st-rejected); opacity: 0.75; }
+
+.status-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.status-badge[data-status="Wishlist"]        { color: var(--st-wishlist);  background: var(--st-wishlist-bg); }
+.status-badge[data-status="Applied"]         { color: var(--st-applied);   background: var(--st-applied-bg); }
+.status-badge[data-status="Interview"]       { color: var(--st-interview); background: var(--st-interview-bg); }
+.status-badge[data-status="Technical Exam"]  { color: var(--st-exam);      background: var(--st-exam-bg); }
+.status-badge[data-status="Final Interview"] { color: var(--st-final);     background: var(--st-final-bg); }
+.status-badge[data-status="Offer"]           { color: var(--st-offer);     background: var(--st-offer-bg); }
+.status-badge[data-status="Rejected"]        { color: var(--st-rejected);  background: var(--st-rejected-bg); }
+
+/* Favorite star */
+.favorite-star {
+  color: var(--gold-500);
+  font-size: 1rem;
+}
+
+/* Row action buttons — quieter than the primary Save button */
+tbody td:last-child button,
+.btn-edit,
+.btn-delete {
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--slate-500);
+  font-size: 0.78rem;
+  padding: 5px 10px;
+  margin-right: 6px;
+}
+
+tbody td:last-child button:hover,
+.btn-edit:hover {
+  border-color: var(--ink-500);
+  color: var(--ink-900);
+  background: var(--paper);
+}
+
+.btn-delete:hover {
+  border-color: var(--st-rejected);
+  color: var(--st-rejected);
+  background: var(--st-rejected-bg);
+}
+
+#empty-message {
+  display: none;
+  text-align: center;
+  color: var(--slate-300);
+  font-size: 0.9rem;
+  padding: 24px 0 4px;
+}
+
+#application-list:empty ~ #empty-message {
+  display: block;
+}
+
+/* ==========================================================================
+   Statistics — quiet number grid, mono figures
+   ========================================================================== */
+
+main > section:has(#average-salary) {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+main > section:has(#average-salary) h2 {
+  grid-column: 1 / -1;
+}
+
+main > section:has(#average-salary) > div {
+  border-left: 2px solid var(--line);
+  padding-left: 14px;
+}
+
+main > section:has(#average-salary) p {
+  margin: 0 0 4px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--slate-500);
+}
+
+main > section:has(#average-salary) h3 {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 1.35rem;
+  color: var(--ink-900);
+}
+
+#highest-salary { color: var(--st-final); }
+#lowest-salary { color: var(--st-rejected); }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  #dashboard {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  main > section:has(#average-salary) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #application-form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 28px 20px 22px;
+  }
+
+  main {
+    padding: 20px 14px 48px;
+  }
+
+  #dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  main > section:has(#average-salary) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #application-form {
+    grid-template-columns: 1fr;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    padding: 8px 0;
+  }
+
+  tbody td {
+    padding: 6px 14px;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--slate-300);
+    margin-bottom: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
