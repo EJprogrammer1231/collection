@@ -9,7 +9,7 @@ function renderingApplications(applicationsRendering = applications) {
     return;
   } else {
     emptyMessage.style.display = "none";
-  }
+  } 
 
   applicationsRendering.forEach(application => {
     const applicationsRow = document.createElement("tr");
@@ -32,6 +32,14 @@ function renderingApplications(applicationsRendering = applications) {
       <td>${application.status}</td>
       <td>${application.isFavorite ? "⭐" : "❌"}</td>
     `;
+
+    editBtn.addEventListener("click", () => {
+      editApplication(application.id);
+    });
+
+    deleteBtn.addEventListener("click", () => {
+      deleteApplication(application.id);
+    });
 
     actions.append(editBtn,deleteBtn);
     applicationsRow.appendChild(actions);
