@@ -6,4 +6,9 @@ function saveApplications() {
 
 function loadData() {
   renderingApplications();
+  updateTotalApplications();
+  updateTotalInterview();
+  updateTotalOffers();
+  updateTotalRejected();
+  updateTotalWishlist();
 }
