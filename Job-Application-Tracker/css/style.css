@@ -73,7 +73,6 @@ header {
   background: var(--ink-900);
   color: var(--surface);
   padding: 40px 32px 28px;
-  border-bottom: 3px solid var(--gold-500);
 }
 
 header h1 {
@@ -136,7 +135,6 @@ main > section > h2 {
 #dashboard .card {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-top: 3px solid var(--ink-500);
   border-radius: var(--radius-md);
   padding: 18px 16px;
   box-shadow: var(--shadow-card);
@@ -146,10 +144,6 @@ main > section > h2 {
 #dashboard .card:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(15, 27, 45, 0.1);
-}
-
-#dashboard .card:has(#total-offers) {
-  border-top-color: var(--gold-500);
 }
 
 #dashboard .card h2 {
@@ -168,10 +162,6 @@ main > section > h2 {
   font-weight: 700;
   font-size: 2rem;
   color: var(--ink-900);
-}
-
-#dashboard .card:has(#total-offers) p {
-  color: var(--gold-500);
 }
 
 /* ==========================================================================
