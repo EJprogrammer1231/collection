@@ -11,4 +11,9 @@ function loadData() {
   updateTotalOffers();
   updateTotalRejected();
   updateTotalWishlist();
+  updateAverageSalary();
+  updateHighestSalary();
+  updateLowestSalary();
+  updateMostAppliedCity();
+  updateMostCommonStatus();
 }
