@@ -2,8 +2,6 @@ const githubSearch = document.getElementById("github-search");
 const btnSearchGithub = document.getElementById("btn-search-github");
 const githubProfile = document.getElementById("github-profile");
 
-let profile = {};
-
 async function getCompanyGithub(username) {
   const github = `https://api.github.com/users/${username}`;
 
@@ -18,6 +16,7 @@ async function getCompanyGithub(username) {
 
     profile = data;
 
+    saveProfile();
     renderGithubProfile();
   } catch (error) {
     console.error(error);
