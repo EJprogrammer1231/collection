@@ -1,0 +1,461 @@
+/* =========================================================
+   Student Management System — Stylesheet
+   Palette: deep academic navy + slate paper + emerald accent
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --navy-900: #14213D;
+  --navy-700: #1F2E52;
+  --paper: #F4F6FB;
+  --card: #FFFFFF;
+  --line: #E2E6F0;
+  --ink: #1B1F2A;
+  --ink-soft: #626A7C;
+  --emerald: #1E8E6C;
+  --emerald-soft: #E4F4EE;
+  --amber: #B8862B;
+  --amber-soft: #FBF1DF;
+  --coral: #C4453B;
+  --coral-soft: #FBEAE8;
+
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(20, 33, 61, 0.06), 0 6px 20px rgba(20, 33, 61, 0.06);
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  font-family: var(--font-body);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* ================= HEADER ================= */
+
+header {
+  background: var(--navy-900);
+  background-image: linear-gradient(135deg, var(--navy-900), var(--navy-700));
+  padding: 30px 40px;
+  border-bottom: 3px solid var(--emerald);
+  box-shadow: 0 4px 16px rgba(20, 33, 61, 0.18);
+  position: relative;
+  z-index: 1;
+}
+
+header h1 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 24px 72px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+section:last-child {
+  margin-bottom: 0;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--navy-900);
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+h2::before {
+  content: "";
+  width: 4px;
+  height: 14px;
+  background: var(--emerald);
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(20, 33, 61, 0.08), 0 14px 28px rgba(20, 33, 61, 0.09);
+  transform: translateY(-2px);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--emerald);
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-soft);
+}
+
+.card p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--navy-900);
+  letter-spacing: -0.01em;
+}
+
+/* ================= FORMS ================= */
+
+.student-form,
+.subject-form {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+}
+
+.student-form form,
+.subject-form form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+input,
+select {
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  flex: 1 1 180px;
+  min-width: 140px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+input::placeholder {
+  color: #9AA1B2;
+}
+
+input:hover,
+select:hover {
+  border-color: #C6CCDD;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--emerald);
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--emerald-soft);
+}
+
+button {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--emerald);
+  color: #fff;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background: #17755A;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* ================= FILTERS ================= */
+
+.filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filters input,
+.filters select {
+  flex: 1 1 220px;
+}
+
+/* ================= TABLES ================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+thead th {
+  background: var(--navy-900);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+  padding: 12px 14px;
+}
+
+tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--ink);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: var(--paper);
+}
+
+/* status-style badges — add class="status-pass" / "status-fail" via JS for best results */
+.status-pass {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--emerald-soft);
+  color: var(--emerald);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-fail {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--coral-soft);
+  color: var(--coral);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-warning {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--amber-soft);
+  color: var(--amber);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* action buttons inside table rows */
+td button {
+  padding: 6px 12px;
+  font-size: 12px;
+  margin-right: 6px;
+  background: var(--navy-700);
+}
+
+td button:hover {
+  background: var(--navy-900);
+}
+
+td button.delete {
+  background: var(--coral);
+}
+
+td button.delete:hover {
+  background: #A5352C;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet: tighten grid, keep table scrollable instead of stacking yet */
+@media (max-width: 900px) {
+  main {
+    padding: 32px 20px 56px;
+  }
+
+  .dashboard {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+  }
+
+  .card {
+    padding: 16px 18px;
+  }
+
+  .card p {
+    font-size: 24px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+}
+
+/* Mobile: stack forms, collapse table into cards */
+@media (max-width: 640px) {
+  header {
+    padding: 22px 20px;
+  }
+
+  header h1 {
+    font-size: 19px;
+  }
+
+  main {
+    padding: 24px 16px 48px;
+  }
+
+  section {
+    margin-bottom: 28px;
+  }
+
+  .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .student-form,
+  .subject-form {
+    padding: 18px;
+  }
+
+  .student-form form,
+  .subject-form form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  input,
+  select,
+  button {
+    width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  table {
+    display: block;
+    white-space: normal;
+    overflow-x: visible;
+  }
+
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    margin-bottom: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 10px 0;
+    background: var(--card);
+    box-shadow: var(--shadow);
+  }
+
+  tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    padding: 10px 14px;
+  }
+
+  tbody tr td:last-child {
+    border-bottom: none;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    margin-right: 12px;
+  }
+
+  td button {
+    margin: 2px 0 2px 6px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+  .dashboard {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  header h1 {
+    font-size: 17px;
+  }
+}

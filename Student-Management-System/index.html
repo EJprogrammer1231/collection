@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header>
+        <h1>Student Management System</h1>
+    </header>
+
+    <main>
+
+        <!-- ================= DASHBOARD ================= -->
+        <section class="dashboard">
+
+            <div class="card">
+                <h3>Total Students</h3>
+                <p id="total-students">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Average GPA</h3>
+                <p id="average-gpa">0.00</p>
+            </div>
+
+            <div class="card">
+                <h3>Passed</h3>
+                <p id="total-passed">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Failed</h3>
+                <p id="total-failed">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Highest Grade</h3>
+                <p id="highest-grade">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Lowest Grade</h3>
+                <p id="lowest-grade">0</p>
+            </div>
+
+        </section>
+
+        <!-- ================= ADD STUDENT ================= -->
+        <section class="student-form">
+
+            <h2>Add Student</h2>
+
+            <form id="student-form">
+
+                <input
+                    type="text"
+                    id="student-name"
+                    placeholder="Student Name"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="student-age"
+                    placeholder="Age"
+                    required
+                >
+
+                <select id="student-gender">
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+
+                <input
+                    type="text"
+                    id="student-course"
+                    placeholder="Course"
+                    required
+                >
+
+                <button type="submit">
+                    Add Student
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- ================= SUBJECTS ================= -->
+        <section class="subject-form">
+
+            <h2>Add Subject</h2>
+
+            <form id="subject-form">
+
+                <select id="student-select">
+                    <option value="">Select Student</option>
+                </select>
+
+                <input
+                    type="text"
+                    id="subject-name"
+                    placeholder="Subject"
+                >
+
+                <input
+                    type="number"
+                    id="subject-grade"
+                    placeholder="Grade"
+                    min="0"
+                    max="100"
+                >
+
+                <button type="submit">
+                    Add Subject
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- ================= SEARCH & SORT ================= -->
+        <section class="filters">
+
+            <input
+                type="text"
+                id="search-student"
+                placeholder="Search Student..."
+            >
+
+            <select id="sort-student">
+
+                <option value="default">Sort By</option>
+
+                <option value="name-asc">
+                    Name A-Z
+                </option>
+
+                <option value="name-desc">
+                    Name Z-A
+                </option>
+
+                <option value="average-high">
+                    Average Highest
+                </option>
+
+                <option value="average-low">
+                    Average Lowest
+                </option>
+
+            </select>
+
+        </section>
+
+        <!-- ================= STUDENT TABLE ================= -->
+        <section>
+
+            <h2>Students</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Course</th>
+                        <th>Subjects</th>
+                        <th>Average</th>
+                        <th>GPA</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="student-list">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- ================= TOP 5 ================= -->
+        <section>
+
+            <h2>Top 5 Students</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Average</th>
+                        <th>GPA</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="top-five-list">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+    <script src="js/storage.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/students.js"></script>
+    <script src="js/subjects.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
+</body>
+</html>
