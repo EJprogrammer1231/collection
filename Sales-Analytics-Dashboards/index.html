@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales Analytics Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-mark">SA</span>
+        <div>
+          <h1>Sales Analytics Dashboard</h1>
+          <p class="brand-sub">Performance overview &amp; inventory control</p>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#products">Products</a>
+        <a href="#orders">Orders</a>
+        <a href="#search">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== DASHBOARD ===== -->
+    <section id="dashboard" class="section">
+      <div class="section-heading">
+        <h2>Dashboard</h2>
+        <p>Key figures at a glance</p>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <h3>Total Sales</h3>
+          <p id="totalSales" class="stat-value">₱0.00</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Orders</h3>
+          <p id="totalOrders" class="stat-value">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Average Order Value</h3>
+          <p id="avgOrderValue" class="stat-value">₱0.00</p>
+        </div>
+        <div class="stat-card">
+          <h3>Best Selling Product</h3>
+          <p id="bestSellingProduct" class="stat-value stat-value--text">—</p>
+        </div>
+        <div class="stat-card">
+          <h3>Worst Selling Product</h3>
+          <p id="worstSellingProduct" class="stat-value stat-value--text">—</p>
+        </div>
+        <div class="stat-card">
+          <h3>Highest Sales Month</h3>
+          <p id="highestSalesMonth" class="stat-value stat-value--text">—</p>
+        </div>
+        <div class="stat-card">
+          <h3>Lowest Sales Month</h3>
+          <p id="lowestSalesMonth" class="stat-value stat-value--text">—</p>
+        </div>
+        <div class="stat-card">
+          <h3>Weekly Revenue</h3>
+          <p id="weeklyRevenue" class="stat-value">₱0.00</p>
+        </div>
+        <div class="stat-card">
+          <h3>Monthly Revenue</h3>
+          <p id="monthlyRevenue" class="stat-value">₱0.00</p>
+        </div>
+        <div class="stat-card">
+          <h3>Revenue Growth %</h3>
+          <p id="revenueGrowth" class="stat-value stat-value--growth">0%</p>
+        </div>
+
+        <div class="stat-card stat-card--wide">
+          <h3>Daily Revenue Chart</h3>
+          <div id="dailyRevenueChart" class="chart-placeholder">
+            <div class="chart-placeholder-bars">
+              <span style="--h: 30%"></span>
+              <span style="--h: 55%"></span>
+              <span style="--h: 40%"></span>
+              <span style="--h: 70%"></span>
+              <span style="--h: 45%"></span>
+              <span style="--h: 85%"></span>
+              <span style="--h: 60%"></span>
+            </div>
+            <p class="chart-placeholder-label">Chart renders here</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRODUCTS ===== -->
+    <section id="products" class="section">
+      <div class="section-heading">
+        <h2>Products</h2>
+        <p>Manage your catalog</p>
+      </div>
+
+      <div class="panel">
+        <form class="inline-form">
+          <div class="form-field">
+            <label for="productName">Product name</label>
+            <input type="text" id="productName" name="productName" placeholder="e.g. Adobo Sauce Mix">
+          </div>
+          <div class="form-field">
+            <label for="productCategory">Category</label>
+            <input type="text" id="productCategory" name="productCategory" placeholder="e.g. Condiments">
+          </div>
+          <div class="form-field">
+            <label for="productPrice">Price</label>
+            <input type="number" id="productPrice" name="productPrice" placeholder="0.00" min="0" step="0.01">
+          </div>
+          <div class="form-field">
+            <label for="productStock">Stock</label>
+            <input type="number" id="productStock" name="productStock" placeholder="0" min="0" step="1">
+          </div>
+          <button type="submit" class="btn btn--primary">Add product</button>
+        </form>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody">
+              <tr>
+                <td>Adobo Sauce Mix</td>
+                <td>Condiments</td>
+                <td>₱85.00</td>
+                <td>42</td>
+                <td class="table-actions">
+                  <button type="button" class="btn btn--ghost">Edit</button>
+                  <button type="button" class="btn btn--danger">Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Sinigang Mix</td>
+                <td>Condiments</td>
+                <td>₱65.00</td>
+                <td>17</td>
+                <td class="table-actions">
+                  <button type="button" class="btn btn--ghost">Edit</button>
+                  <button type="button" class="btn btn--danger">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ORDERS ===== -->
+    <section id="orders" class="section">
+      <div class="section-heading">
+        <h2>Orders</h2>
+        <p>Track incoming transactions</p>
+      </div>
+
+      <div class="panel">
+        <form class="inline-form">
+          <div class="form-field">
+            <label for="orderCustomer">Customer</label>
+            <input type="text" id="orderCustomer" name="orderCustomer" placeholder="Customer name">
+          </div>
+          <div class="form-field">
+            <label for="orderQuantity">Quantity</label>
+            <input type="number" id="orderQuantity" name="orderQuantity" placeholder="0" min="1" step="1">
+          </div>
+          <div class="form-field">
+            <label for="orderPrice">Price</label>
+            <input type="number" id="orderPrice" name="orderPrice" placeholder="0.00" min="0" step="0.01">
+          </div>
+          <div class="form-field">
+            <label for="orderDate">Date</label>
+            <input type="date" id="orderDate" name="orderDate">
+          </div>
+          <button type="submit" class="btn btn--primary">Add order</button>
+        </form>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <tr>
+                <td>Maria Santos</td>
+                <td>3</td>
+                <td>₱85.00</td>
+                <td>2026-07-20</td>
+                <td>₱255.00</td>
+              </tr>
+              <tr>
+                <td>Jerome Cruz</td>
+                <td>1</td>
+                <td>₱65.00</td>
+                <td>2026-07-22</td>
+                <td>₱65.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SEARCH ===== -->
+    <section id="search" class="section">
+      <div class="section-heading">
+        <h2>Search</h2>
+        <p>Find products and orders quickly</p>
+      </div>
+
+      <div class="panel">
+        <form class="search-form">
+          <div class="form-field form-field--grow">
+            <label for="searchProduct">Search product</label>
+            <input type="search" id="searchProduct" name="searchProduct" placeholder="Type a product name...">
+          </div>
+          <div class="form-field">
+            <label for="filterDate">Filter by date</label>
+            <input type="date" id="filterDate" name="filterDate">
+          </div>
+          <div class="form-field">
+            <label for="filterCategory">Filter by category</label>
+            <select id="filterCategory" name="filterCategory">
+              <option value="">All categories</option>
+              <option value="condiments">Condiments</option>
+              <option value="beverages">Beverages</option>
+              <option value="snacks">Snacks</option>
+              <option value="produce">Produce</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn--primary">Apply</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Sales Analytics Dashboard</p>
+  </footer>
+
+</body>
+</html>
